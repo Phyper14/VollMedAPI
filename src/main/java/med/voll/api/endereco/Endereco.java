@@ -27,4 +27,16 @@ public class Endereco {
         this.cidade = endereco.cidade();
         this.uf = endereco.uf();
     }
+
+    public void alterarEndereco(CadastroEndereco endereco) {
+        if(endereco.complemento() != null) {
+            this.complemento = endereco.complemento();
+        }
+        this.bairro = endereco.bairro();
+        this.logradouro = endereco.logradouro();
+        this.cep = endereco.cep();
+        this.numero = endereco.numero();
+        this.cidade = endereco.cidade();
+        this.uf = endereco.uf();
+    }
 }

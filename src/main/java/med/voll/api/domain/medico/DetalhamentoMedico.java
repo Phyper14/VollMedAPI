@@ -1,7 +1,6 @@
-package med.voll.api.medico;
+package med.voll.api.domain.medico;
 
-import med.voll.api.endereco.Endereco;
-import org.springframework.http.ProblemDetail;
+import med.voll.api.domain.endereco.Endereco;
 
 public record DetalhamentoMedico(
         Long id,

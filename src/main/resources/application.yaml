@@ -20,3 +20,8 @@ spring:
       pageable:
         page-parameter: pagina
         size-parameter: tamanho
+
+application:
+  security:
+    token:
+      secret: ${JWT_SECRET:senha}

@@ -14,6 +14,7 @@ import java.util.Date;
 
 @Service
 public class TokenService {
+    private static final String ISSUER = "API Voll.med";
     @Value("${application.security.token.secret}")
     private String secret;
 
@@ -21,12 +22,25 @@ public class TokenService {
         try {
             var algoritmo = Algorithm.HMAC256(secret);
             return JWT.create()
-                    .withIssuer("API Voll.med")
+                    .withIssuer(ISSUER)
                     .withSubject(usuario.getLogin())
                     .withExpiresAt(dataExpiracao())
                     .sign(algoritmo);
         } catch (JWTCreationException exception) {
             throw new RuntimeException("Erro ao gerar token jwt", exception);
+        }
+    }
+
+    public String getSubject(String tokenJWT) {
+        try {
+            var algoritmo = Algorithm.HMAC256(secret);
+            return JWT.require(algoritmo)
+                    .withIssuer(ISSUER)
+                    .build()
+                    .verify(tokenJWT)
+                    .getSubject();
+        } catch (JWTCreationException exception) {
+            throw new RuntimeException("Erro ao verificar token jwt", exception);
         }
     }
 
